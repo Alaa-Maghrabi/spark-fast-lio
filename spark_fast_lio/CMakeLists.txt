@@ -53,6 +53,10 @@ find_package(tf2_sensor_msgs REQUIRED)
 
 find_package(Eigen3 REQUIRED)
 
+# Pre-find Boost so PCL's FindBoost (with Boost_NO_BOOST_CMAKE ON) doesn't
+# fail on CMake 3.22+ where the legacy FindBoost module was removed.
+find_package(Boost REQUIRED COMPONENTS system filesystem date_time iostreams)
+
 set(PCL_FIND_QUIETLY ON)
 set(CLEAR_WARNING_SUPPRESSION OFF)
 if(NOT DEFINED CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
